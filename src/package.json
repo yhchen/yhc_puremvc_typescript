@@ -1,0 +1,16 @@
+{
+  "name": "yhcmvc",
+  "version": "1.0.0",
+  "description": "mvc typescript framework",
+  "main": "./bin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yhchen",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^10.3.3",
+    "typescript": "^2.9.2"
+  }
+}
