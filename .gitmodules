@@ -1,0 +1,3 @@
+[submodule "protobuf_js_tools"]
+	path = protobuf_js_tools
+	url = https://github.com/yhchen/protobuf_js_tools
