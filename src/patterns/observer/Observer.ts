@@ -1,6 +1,5 @@
-///<reference path='../../interfaces/INotification.ts'/>
-///<reference path='../../interfaces/IObserver.ts'/>
 ///<reference path='../../def/CommonDef.ts'/>
+///<reference path='../../interfaces/IObserver.ts'/>
 
 module puremvc
 {

@@ -1,8 +1,7 @@
+///<reference path='../../def/CommonDef.ts'/>
 ///<reference path='../../interfaces/IMediator.ts'/>
 ///<reference path='../../interfaces/INotifier.ts'/>
-///<reference path='../../interfaces/INotification.ts'/>
 ///<reference path='../../patterns/observer/Notifier.ts'/>
-///<reference path='../../def/CommonDef.ts'/>
 
 module puremvc
 {

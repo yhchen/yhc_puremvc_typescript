@@ -1,7 +1,6 @@
+///<reference path='../def/NotifyDef.ts'/>
 ///<reference path='./IObserver.ts'/>
 ///<reference path='./IMediator.ts'/>
-///<reference path='./INotification.ts'/>
-///<reference path='../def/NotifyDef.ts' />
 module puremvc
 {
 	/**
@@ -60,8 +59,8 @@ module puremvc
 		 * @param notification
 		 * 		The <code>INotification</code> to notify <code>IObserver</code>s of.
 		 */
-		notifyObservers<TName extends ENotify>(notification:Notification<TName>):void;
-		notifyObservers<TName extends TNotifyLKey, TBody = TNotifyL[TName]>(notification:NotificationB<TName, TBody>):void;
+		notifyObservers<TName extends TNotifyLKey>(etype:TName, body:TNotifyL[TName]):void;
+		notifyObservers(etype: ENotify):void;
 
 		/**
 		 * Register an <code>IMediator</code> instance with the <code>View</code>.

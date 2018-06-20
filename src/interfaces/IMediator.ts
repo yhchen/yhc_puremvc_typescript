@@ -1,4 +1,4 @@
-///<reference path='./INotification.ts'/>
+///<reference path='../def/NotifyDef.ts'/>
 ///<reference path='./INotifier.ts'/>
 
 module puremvc
@@ -89,8 +89,8 @@ module puremvc
 		 * @param notification
 		 * 		The notification instance to be handled.
 		 */
-		handleNotification<TName extends ENotify>(notification:Notification<TName>):void;
-		handleNotification<TName extends TNotifyLKey, TBody = TNotifyL[TName]>(notification:NotificationB<TName, TBody>):void;
+		handleNotification<TName extends TNotifyLKey>(etype:TName, body:TNotifyL[TName]):void;
+		handleNotification(etype: ENotify):void;
 
 		/**
 		 * Called by the View when the Mediator is registered. This method has to be overridden

@@ -1,6 +1,6 @@
+///<reference path='../../def/NotifyDef.ts'/>
 ///<reference path='../../interfaces/ICommand.ts'/>
 ///<reference path='../../interfaces/INotifier.ts'/>
-///<reference path='../../interfaces/INotification.ts'/>
 ///<reference path='../../patterns/observer/Notifier.ts'/>
 
 module puremvc

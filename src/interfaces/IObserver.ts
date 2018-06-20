@@ -1,4 +1,4 @@
-///<reference path='./INotification.ts'/>
+///<reference path='../def/NotifyDef.ts'/>
 
 module puremvc
 {
@@ -54,8 +54,8 @@ module puremvc
 		 * 		The <code>INotification</code> to pass to the interested object's notification
 		 * 		method.
 		 */
-		notifyObserver<TName extends ENotify>(notification:Notification<TName>):void;
-		notifyObserver<TName extends TNotifyLKey, TBody = TNotifyL[TName]>(notification:NotificationB<TName, TBody>):void;
+		notifyObserver<TName extends TNotifyLKey>(etype:TName, body:TNotifyL[TName]):void;
+		notifyObserver(etype: ENotify):void;
 
 		/**
 		 * Compare an object to the notification context.

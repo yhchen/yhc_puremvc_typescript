@@ -1,4 +1,4 @@
-///<reference path='./INotification.ts'/>
+///<reference path='../def/NotifyDef.ts'/>
 ///<reference path='./INotifier.ts'/>
 
 module puremvc
@@ -19,7 +19,7 @@ module puremvc
 		 * @param notification
 		 * 		The <code>INotification</code> to handle.
 		 */
-		execute<TName extends ENotify>(notification:Notification<TName>):void;
-		execute<TName extends TNotifyLKey, TBody = TNotifyL[TName]>(notification:NotificationB<TName, TBody>):void;
+		execute<T extends TNotifyLKey>(etype:T, body:TNotifyL[T]):void;
+		execute(etype: ENotify):void;
 	}
 }

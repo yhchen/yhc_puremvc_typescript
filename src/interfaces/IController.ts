@@ -1,4 +1,4 @@
-///<reference path='./INotification.ts'/>
+///<reference path='../def/NotifyDef.ts'/>
 
 module puremvc
 {
@@ -31,8 +31,8 @@ module puremvc
 		 * @param notification
 		 * 		The <code>INotification</code> the command will receive as parameter.
 		 */
-		executeCommand<TName extends ENotify>(notification:Notification<TName>):void;
-		executeCommand<TName extends TNotifyLKey, TBody = TNotifyL[TName]>(notification:NotificationB<TName, TBody>):void;
+		executeCommand<TName extends TNotifyLKey>(etype:TName, body:TNotifyL[TName]):void;
+		executeCommand(etype: ENotify):void;
 
 		/**
 		 * Register a particular <code>ICommand</code> class as the handler for a particular
@@ -52,7 +52,7 @@ module puremvc
 		 * @param commandClassRef
 		 * 		The constructor of the <code>ICommand</code> implementor.
 		 */
-		registerCommand<T extends TNotifyLKey>(etype:T, listener:(body:TNotifyL[T])=>void):void;
+		registerCommand<TName extends TNotifyLKey, TBody = TNotifyL[TName]>(etype:TName, listener:(body:TBody)=>void):void;
 		registerCommand(etype: ENotify, listener:()=>void):void;
 
 		/**

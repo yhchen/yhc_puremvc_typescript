@@ -1,7 +1,7 @@
+///<reference path='../def/NotifyDef.ts'/>
 ///<reference path='./INotifier.ts'/>
 ///<reference path='./IProxy.ts'/>
 ///<reference path='./IMediator.ts'/>
-///<reference path='./INotification.ts'/>
 
 module puremvc
 {
@@ -30,7 +30,7 @@ module puremvc
 		 * @param commandClassRef
 		 * 		A reference to the constructor of the <code>ICommand</code>.
 		 */
-		registerCommand<T extends TNotifyLKey>(etype:T, listener:(body:TNotifyL[T])=>void):void;
+		registerCommand<TName extends TNotifyLKey, TBody = TNotifyL[TName]>(etype:TName, listener:(body:TBody)=>void):void;
 		registerCommand(etype: ENotify, listener:()=>void):void;
 
 		/**
@@ -154,7 +154,8 @@ module puremvc
 		 * 		The <code>INotification</code> to have the <code>IView</code> notify
 		 *		<code>IObserver</code>s	of.
 		 */
-		notifyObservers<TName extends ENotify>(notification:Notification<TName>):void;
-		notifyObservers<TName extends TNotifyLKey, TBody = TNotifyL[TName]>(notification:NotificationB<TName, TBody>):void;
+		notifyObservers<TName extends TNotifyLKey>(etype:TName, body:TNotifyL[TName]):void;
+		notifyObservers(etype: ENotify):void;
+
 	}
 }

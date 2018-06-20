@@ -20,9 +20,13 @@ module puremvc
         [ENotify.StartUp]: {
             frameRate: number,
         },
+        [ENotify.Shutdown]: undefined,
         [ENotify.OpenUI]: {
             uiid: number,
-            params: any,
+            params?: any,
+        },
+        [ENotify.CloseUI]: {
+            uiid:number
         },
     }
 

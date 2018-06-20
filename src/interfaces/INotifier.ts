@@ -32,7 +32,7 @@ module puremvc
 		 * @param body
 		 * 		The body of the notification.
 		 */
-		sendNotification<T extends TNotifyLKey>(etype:T, body:TNotifyL[T]):void;
+		sendNotification<TName extends TNotifyLKey>(etype:TName, body:TNotifyL[TName]):void;
 		sendNotification(etype: ENotify):void;
 	}
 }

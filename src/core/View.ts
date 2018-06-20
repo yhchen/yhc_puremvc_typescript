@@ -1,6 +1,5 @@
 ///<reference path='../interfaces/IView.ts'/>
 ///<reference path='../interfaces/IObserver.ts'/>
-///<reference path='../interfaces/INotification.ts'/>
 ///<reference path='../interfaces/IMediator.ts'/>
 
 module puremvc
@@ -70,37 +69,37 @@ module puremvc
 		 * Register an <code>IObserver</code> to be notified of <code>INotifications</code> with a
 		 * given name.
 		 *
-		 * @param notificationName
+		 * @param name
 		 * 		The name of the <code>INotifications</code> to notify this <code>IObserver</code>
 		 * 		of.
 		 *
 		 * @param observer
 		 * 		The <code>IObserver</code> to register.
 		 */
-		registerObserver(notificationName:ENotify, observer:IObserver):void
+		registerObserver(name:ENotify, observer:IObserver):void
 		{
-			let observers = this._observerMap.get(notificationName);
+			let observers = this._observerMap.get(name);
 			if (observers)
 				observers.push(observer);
 			else
-				this._observerMap.set(notificationName, [ observer ]);
+				this._observerMap.set(name, [ observer ]);
 		}
 
 		/**
 		 * Remove a list of <code>Observer</code>s for a given <code>notifyContext</code> from an
 		 * <code>Observer</code> list for a given <code>INotification</code> name.
 		 *
-		 * @param notificationName
+		 * @param name
 		 * 		Which <code>IObserver</code> list to remove from.
 		 *
 		 * @param notifyContext
 		 * 		Remove the <code>IObserver</code> with this object as its
 		 *		<code>notifyContext</code>.
 		 */
-		removeObserver(notificationName:ENotify, notifyContext:any):void
+		removeObserver(name:ENotify, notifyContext:any):void
 		{
 			//The observer list for the notification under inspection
-			let observers = this._observerMap.get(notificationName);
+			let observers = this._observerMap.get(name);
 
 			//Find the observer for the notifyContext.
 			if (observers)
@@ -120,7 +119,7 @@ module puremvc
 				 * notification key from the observer map.
 				 */
 				if (observers.length == 0)
-					this._observerMap.delete(notificationName);
+					this._observerMap.delete(name);
 			}
 		}
 
@@ -134,11 +133,9 @@ module puremvc
 		 * @param notification
 		 * 		The <code>INotification</code> to notify <code>IObserver</code>s of.
 		 */
-		notifyObservers(notification:any):void
+		notifyObservers(name:any, body?:any):void
 		{
-			let notificationName = notification.name;
-
-			let observersRef/*Array*/ = this._observerMap.get(notificationName);
+			let observersRef/*Array*/ = this._observerMap.get(name);
 			if (observersRef)
 			{
 				// Copy the array.
@@ -147,7 +144,7 @@ module puremvc
 				for (let i/*Number*/=0; i<len; i++)
 				{
 					let observer/*Observer*/ = observers[i];
-					observer.notifyObserver(notification);
+					observer.notifyObserver(name, body);
 				}
 			}
 		}

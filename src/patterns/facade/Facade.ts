@@ -1,10 +1,10 @@
+///<reference path='../../def/NotifyDef.ts'/>
 ///<reference path='../../interfaces/IFacade.ts'/>
 ///<reference path='../../interfaces/IModel.ts'/>
 ///<reference path='../../interfaces/IView.ts'/>
 ///<reference path='../../interfaces/IController.ts'/>
 ///<reference path='../../interfaces/IProxy.ts'/>
 ///<reference path='../../interfaces/IMediator.ts'/>
-///<reference path='../../interfaces/INotification.ts'/>
 ///<reference path='../../core/Controller.ts'/>
 ///<reference path='../../core/Model.ts'/>
 ///<reference path='../../core/View.ts'/>
@@ -344,10 +344,10 @@ module puremvc
 		 * 		The <code>INotification</code> to have the <code>IView</code> notify
 		 *		<code>IObserver</code>s	of.
 		 */
-		notifyObservers (notification:any):void
+		notifyObservers(name: any, body?: any):void
 		{
 			if (this._view)
-				this._view.notifyObservers(notification);
+				this._view.notifyObservers(name, body);
 		}
 
 		/**
@@ -363,7 +363,7 @@ module puremvc
 		 */
 		sendNotification(name:any, body?:any):void
 		{
-			this.notifyObservers(new NotificationB(name, body));
+			this.notifyObservers(name, body);
 		}
 
 		/**

@@ -1,3 +1,4 @@
+///<reference path='../../def/CommonDef.ts'/>
 ///<reference path='../../interfaces/INotifier.ts'/>
 ///<reference path='../../interfaces/IFacade.ts'/>
 ///<reference path='../../def/CommonDef.ts'/>
