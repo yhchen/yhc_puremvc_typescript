@@ -96,7 +96,7 @@ module puremvc
 		 *
 		 * @final
 		 */
-		public execute(notification:INotification):void
+		public execute(notification:any):void
 		{
 			let subCommands:Function[] = this._subCommands.slice(0);
 			let len = this._subCommands.length;

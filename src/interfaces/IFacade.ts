@@ -30,7 +30,8 @@ module puremvc
 		 * @param commandClassRef
 		 * 		A reference to the constructor of the <code>ICommand</code>.
 		 */
-		registerCommand(notificationName:ENotify, commandClassRef:Function):void;
+		registerCommand<T extends TNotifyLKey>(etype:T, listener:(body:TNotifyL[T])=>void):void;
+		registerCommand(etype: ENotify, listener:()=>void):void;
 
 		/**
 		 * Remove a previously registered <code>ICommand</code> to <code>INotification</code>
@@ -153,6 +154,7 @@ module puremvc
 		 * 		The <code>INotification</code> to have the <code>IView</code> notify
 		 *		<code>IObserver</code>s	of.
 		 */
-		notifyObservers(notification:INotification):void;
+		notifyObservers<TName extends ENotify>(notification:Notification<TName>):void;
+		notifyObservers<TName extends TNotifyLKey, TBody = TNotifyL[TName]>(notification:NotificationB<TName, TBody>):void;
 	}
 }

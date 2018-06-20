@@ -28,7 +28,7 @@ module puremvc
 		 * @param notification
 		 * 		The <code>INotification</code> to handle.
 		 */
-		execute(notification:INotification):void
+		execute(notification:any):void
 		{
 
 		}

@@ -114,7 +114,7 @@ module puremvc
 		 * @param notification
 		 * 		The notification instance to be handled.
 		 */
-		handleNotification(notification:INotification):void
+		handleNotification(notification:any):void
 		{
 
 		}

@@ -89,7 +89,8 @@ module puremvc
 		 * @param notification
 		 * 		The notification instance to be handled.
 		 */
-		handleNotification(notification:INotification):void;
+		handleNotification<TName extends ENotify>(notification:Notification<TName>):void;
+		handleNotification<TName extends TNotifyLKey, TBody = TNotifyL[TName]>(notification:NotificationB<TName, TBody>):void;
 
 		/**
 		 * Called by the View when the Mediator is registered. This method has to be overridden

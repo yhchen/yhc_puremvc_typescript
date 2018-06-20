@@ -15,8 +15,6 @@ module puremvc
         // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ add cutom notify type below ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
     }
 
-    export type ENotifyKey = keyof typeof ENotify;
-
     export type TNotifyL =
     {
         [ENotify.StartUp]: {

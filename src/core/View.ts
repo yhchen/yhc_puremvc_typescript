@@ -134,9 +134,9 @@ module puremvc
 		 * @param notification
 		 * 		The <code>INotification</code> to notify <code>IObserver</code>s of.
 		 */
-		notifyObservers(notification:INotification):void
+		notifyObservers(notification:any):void
 		{
-			let notificationName = notification.getName();
+			let notificationName = notification.name;
 
 			let observersRef/*Array*/ = this._observerMap.get(notificationName);
 			if (observersRef)

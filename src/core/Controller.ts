@@ -97,14 +97,14 @@ module puremvc
 		 * @param notification
 		 * 		The <code>INotification</code> the command will receive as parameter.
 		 */
-		executeCommand(notification:INotification):void
+		executeCommand(notification:any):void
 		{
 			/*
 			 * Typed any here instead of <code>Function</code> (won't compile if set to Function
 			 * because today the compiler consider that <code>Function</code> is not newable and
 			 * doesn't have a <code>Class</code> type)
 			 */
-			let commandClassRef:any = this.commandMap.get(notification.getName());
+			let commandClassRef:any = this.commandMap.get(notification.name);
 			if (commandClassRef)
 			{
 				let command:ICommand = <ICommand> /*</>*/ new commandClassRef();

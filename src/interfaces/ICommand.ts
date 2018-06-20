@@ -19,6 +19,7 @@ module puremvc
 		 * @param notification
 		 * 		The <code>INotification</code> to handle.
 		 */
-		execute(notification:INotification):void;
+		execute<TName extends ENotify>(notification:Notification<TName>):void;
+		execute<TName extends TNotifyLKey, TBody = TNotifyL[TName]>(notification:NotificationB<TName, TBody>):void;
 	}
 }

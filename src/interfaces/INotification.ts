@@ -24,15 +24,20 @@ module puremvc
 	 * pattern. PureMVC classes need not be related to each other in a parent/child relationship in
 	 * order to communicate with one another using <code>INotification</code>s.
 	 */
-	export type INotification =
+	export class NotificationB<TName extends TNotifyLKey, TBody = TNotifyL[TName]>
 	{
+		public constructor(name: TName, body: TBody){
+			this._name = name;
+			this._body = body;
+		}
+
 		/**
 		 * Get the name of the <code>Notification</code> instance.
 		 *
 		 * @return
 		 *		The name of the <code>Notification</code> instance.
 		 */
-		getName():ENotify;
+		public get name():TName { return this._name; }
 
 		/**
 		 * Set the body of the <code>INotification</code>.
@@ -40,7 +45,7 @@ module puremvc
 		 * @param body
 		 * 		The body of the notification instance.
 		 */
-		setBody(body:any):void;
+		public set body(body:TBody) { this._body = body; }
 
 		/**
 		 * Get the body of the <code>INotification</code>.
@@ -48,7 +53,7 @@ module puremvc
 		 * @return
 		 *		The body object of the <code>INotification</code>.
 		 */
-		getBody():any;
+		public get body():TBody { return this._body; }
 
 		/**
 		 * Get a textual representation of the <code>Notification</code> instance.
@@ -56,6 +61,33 @@ module puremvc
 		 * @return
 		 * 		The textual representation of the <code>Notification</code>	instance.
 		 */
-		toString():string;
+		public toString():string { return JSON.stringify({name:this._name, body: this._body}); }
+
+		private _name: TName;
+		private _body: TBody;
+	}
+
+	export class Notification<TName extends ENotify>
+	{
+		public constructor(name: TName) {
+			this._name = name;
+		}
+		/**
+		 * Get the name of the <code>Notification</code> instance.
+		 *
+		 * @return
+		 *		The name of the <code>Notification</code> instance.
+		 */
+		public get name():ENotify { return this._name; }
+
+		/**
+		 * Get a textual representation of the <code>Notification</code> instance.
+		 *
+		 * @return
+		 * 		The textual representation of the <code>Notification</code>	instance.
+		 */
+		public toString():string { return this._name.toString(); }
+
+		private _name: TName;
 	}
 }

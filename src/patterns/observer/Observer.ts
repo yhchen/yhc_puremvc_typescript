@@ -113,7 +113,7 @@ module puremvc
 		 * 		The <code>INotification</code> to pass to the interested object's notification
 		 * 		method.
 		 */
-		notifyObserver(notification:INotification):void
+		notifyObserver(notification:any):void
 		{
 			this.getNotifyMethod().call(this.getNotifyContext(), notification);
 		}

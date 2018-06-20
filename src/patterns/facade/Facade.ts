@@ -8,7 +8,6 @@
 ///<reference path='../../core/Controller.ts'/>
 ///<reference path='../../core/Model.ts'/>
 ///<reference path='../../core/View.ts'/>
-///<reference path='../../patterns/observer/Notification.ts'/>
 
 module puremvc
 {
@@ -40,21 +39,21 @@ module puremvc
 		 *
 		 * @protected
 		 */
-		_model:IModel = NullModel;
+		protected _model:IModel = NullModel;
 
 		/**
 		 * Local reference to the <code>View</code> singleton.
 		 *
 		 * @protected
 		 */
-		view:IView = NullView;
+		protected _view:IView = NullView;
 
 		/**
 		 * Local reference to the <code>Controller</code> singleton.
 		 *
 		 * @protected
 		 */
-		controller:IController = NullController;
+		protected _controller:IController = NullController;
 
 		/**
 		 * Constructs a <code>Controller</code> instance.
@@ -66,7 +65,7 @@ module puremvc
 		 * @throws Error
 		 *		Throws an error if an instance of this singleton has already been constructed.
 		 */
-		constructor()
+		protected constructor()
 		{
 			this.initializeFacade();
 		}
@@ -81,7 +80,7 @@ module puremvc
 		 *
 		 * @protected
 		 */
-		initializeFacade():void
+		protected initializeFacade():void
 		{
 			this.initializeModel();
 			this.initializeController();
@@ -111,7 +110,7 @@ module puremvc
 		 *
 		 * @protected
 		 */
-		initializeModel():void
+		protected initializeModel():void
 		{
 			if (!this._model)
 				this._model = Model.instance;
@@ -134,10 +133,10 @@ module puremvc
 		 *
 		 * @protected
 		 */
-		initializeController():void
+		protected initializeController():void
 		{
-			if (!this.controller)
-				this.controller = Controller.instance;
+			if (!this._controller)
+				this._controller = Controller.instance;
 		}
 
 		/**
@@ -161,10 +160,10 @@ module puremvc
 		 *
 		 * @protected
 		 */
-		initializeView():void
+		protected initializeView():void
 		{
-			if (!this.view)
-				this.view = View.instance;
+			if (!this._view)
+				this._view = View.instance;
 		}
 
 		/**
@@ -180,7 +179,7 @@ module puremvc
 		 */
 		registerCommand(notificationName:ENotify, commandClassRef:Function):void
 		{
-			this.controller.registerCommand(notificationName, commandClassRef);
+			this._controller.registerCommand(notificationName, <any>commandClassRef);
 		}
 
 		/**
@@ -193,7 +192,7 @@ module puremvc
 		 */
 		removeCommand(notificationName:ENotify):void
 		{
-			this.controller.removeCommand(notificationName);
+			this._controller.removeCommand(notificationName);
 		}
 
 		/**
@@ -209,7 +208,7 @@ module puremvc
 		 */
 		hasCommand(notificationName:ENotify):boolean
 		{
-			return this.controller.hasCommand(notificationName);
+			return this._controller.hasCommand(notificationName);
 		}
 
 		/**
@@ -279,8 +278,8 @@ module puremvc
 		 */
 		registerMediator(mediator:IMediator):void
 		{
-			if (this.view)
-				this.view.registerMediator(mediator);
+			if (this._view)
+				this._view.registerMediator(mediator);
 		}
 
 		/**
@@ -295,7 +294,7 @@ module puremvc
 		 */
 		retrieveMediator(mediatorName:string):IMediator|undefined
 		{
-			return this.view.retrieveMediator(mediatorName);
+			return this._view.retrieveMediator(mediatorName);
 		}
 
 		/**
@@ -310,8 +309,8 @@ module puremvc
 		removeMediator(mediatorName:string):IMediator|undefined
 		{
 			let mediator;
-			if (this.view)
-				mediator = this.view.removeMediator(mediatorName);
+			if (this._view)
+				mediator = this._view.removeMediator(mediatorName);
 
 			return mediator;
 		}
@@ -328,7 +327,7 @@ module puremvc
 		 */
 		hasMediator(mediatorName:string):boolean
 		{
-			return this.view.hasMediator(mediatorName);
+			return this._view.hasMediator(mediatorName);
 		}
 
 		/**
@@ -345,10 +344,10 @@ module puremvc
 		 * 		The <code>INotification</code> to have the <code>IView</code> notify
 		 *		<code>IObserver</code>s	of.
 		 */
-		notifyObservers (notification:INotification):void
+		notifyObservers (notification:any):void
 		{
-			if (this.view)
-				this.view.notifyObservers(notification);
+			if (this._view)
+				this._view.notifyObservers(notification);
 		}
 
 		/**
@@ -362,9 +361,9 @@ module puremvc
 		 * @param body
 		 *		The body of the notification to send.
 		 */
-		sendNotification(name:any, body:any=null):void
+		sendNotification(name:any, body?:any):void
 		{
-			this.notifyObservers(new Notification(name, body));
+			this.notifyObservers(new NotificationB(name, body));
 		}
 
 		/**

@@ -31,7 +31,8 @@ module puremvc
 		 * @param notification
 		 * 		The <code>INotification</code> the command will receive as parameter.
 		 */
-		executeCommand(notification:INotification):void;
+		executeCommand<TName extends ENotify>(notification:Notification<TName>):void;
+		executeCommand<TName extends TNotifyLKey, TBody = TNotifyL[TName]>(notification:NotificationB<TName, TBody>):void;
 
 		/**
 		 * Register a particular <code>ICommand</code> class as the handler for a particular
@@ -51,7 +52,8 @@ module puremvc
 		 * @param commandClassRef
 		 * 		The constructor of the <code>ICommand</code> implementor.
 		 */
-		registerCommand(notificationName:ENotify, commandClassRef:Function):void;
+		registerCommand<T extends TNotifyLKey>(etype:T, listener:(body:TNotifyL[T])=>void):void;
+		registerCommand(etype: ENotify, listener:()=>void):void;
 
 		/**
 		 * Check if an <code>ICommand</code> is registered for a given <code>Notification</code>.

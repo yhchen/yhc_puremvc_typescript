@@ -54,7 +54,8 @@ module puremvc
 		 * 		The <code>INotification</code> to pass to the interested object's notification
 		 * 		method.
 		 */
-		notifyObserver(notification:INotification):void;
+		notifyObserver<TName extends ENotify>(notification:Notification<TName>):void;
+		notifyObserver<TName extends TNotifyLKey, TBody = TNotifyL[TName]>(notification:NotificationB<TName, TBody>):void;
 
 		/**
 		 * Compare an object to the notification context.
